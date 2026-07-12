@@ -1,0 +1,872 @@
+/* ==========================================================================
+   1. БАЗОВЫЕ НАСТРОЙКИ (ОБНУЛЕНИЕ И ШРИФТЫ)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000; /* Идеально черный цвет */
+    color: #ffffff;           
+    font-family: 'Inter', sans-serif; 
+    line-height: 1.4;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+/* ==========================================================================
+   2. ШАПКА САЙТА (МЕНЮ)
+   ========================================================================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* Фиксированная высота шапки */
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4); /* Очень прозрачный черный, чтобы работал блюр */
+    backdrop-filter: blur(20px);         /* Размывает всё, что находится ПОД шапкой */
+    -webkit-backdrop-filter: blur(20px); /* Поддержка для Safari на Mac/iOS */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Едва заметная полоса снизу */
+    z-index: 1000; /* Чтобы шапка всегда была поверх видео и текста */
+}
+
+/* Контейнер, который держит элементы по бокам на одной линии с контентом сайта */
+.header-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Логотип */
+.logo {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Правая часть: меню + кнопка */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 32px; /* Расстояние между меню и кнопкой */
+}
+
+/* Ссылки навигации */
+.nav {
+    display: flex;
+    gap: 24px; /* Расстояние между самими ссылками */
+}
+
+.nav a {
+    font-size: 13px;
+    font-weight: 400;
+    color: #ffffff;
+    opacity: 0.8;
+    letter-spacing: -0.1px;
+    transition: opacity 0.2s ease;
+}
+
+.nav a:hover {
+    opacity: 1; /* Подсветка при наведении */
+}
+
+/* Маленькая кнопка "Связаться" в шапке */
+.btn-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px 20px;
+    border-radius: 20px; /* Овальная форма */
+    font-size: 13px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.btn-nav:hover {
+    background-color: #e6e6e6;
+}
+
+/* ==========================================================================
+   3. ГЛАВНЫЙ ЭКРАН (HERO SECTION)
+   ========================================================================== */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center; 
+    padding: 0 60px; 
+    position: relative;
+    background: radial-gradient(circle at 50% -15%, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0) 45%), #000000;
+}
+
+.hero-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-content {
+    max-width: 850px; 
+    text-align: left; 
+}
+
+/* Маленькая плашка-тег */
+.status-tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #aaaaaa;
+    margin-bottom: 32px;
+}
+
+/* Мигающая точка */
+.status-tag .dot {
+    width: 6px;
+    height: 6px;
+    background-color: #34d399; 
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: blink 2s infinite ease-in-out; 
+}
+
+@keyframes blink {
+    0% { opacity: 0.4; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 8px rgba(52, 211, 153, 0.7); }
+    100% { opacity: 0.4; transform: scale(0.9); }
+}
+
+/* ГЛАВНЫЙ ЗАГОЛОВОК (Теперь начертание Semi-Bold) */
+.hero-content h1 {
+    font-size: 80px; 
+    font-weight: 590; /* 600 — это строго Inter Semi-Bold (чуть толще Medium) */
+    line-height: 0.9; 
+    margin-bottom: 24px;
+    letter-spacing: -1px; 
+}
+
+/* Принудительно красим выделенные слова в серый цвет */
+.hero-content h1 .gray-text {
+    color: #666666; /* Аккуратный приглушенный серый цвет */
+}
+
+/* Описание под заголовком */
+.hero-content p {
+    font-size: 16px;
+    color: #888888;
+    margin-bottom: 48px;
+    max-width: 460px; 
+    line-height: 1.5;
+}
+
+/* Контейнер для двух кнопок */
+.hero-buttons {
+    display: flex;
+    gap: 16px; 
+}
+
+/* Базовый стиль кнопок */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 32px; 
+    border-radius: 30px; 
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* Первая кнопка: Белая */
+.btn-primary {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    background-color: #f3f3f3;
+}
+
+/* Вторая кнопка: Прозрачная */
+.btn-secondary {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Контейнер для летающих элементов */
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Чтобы не мешали кликать по кнопкам */
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2; /* Текст и кнопки поверх плашек */
+}
+
+/* Стиль самой стеклянной неоновой плашки */
+.float-badge {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px 18px;
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.03);
+    transition: all 0.3s ease;
+}
+
+/* Светящаяся точка внутри плашки */
+.badge-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ffffff;
+}
+
+/* Текст внутри плашки */
+.badge-text {
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+    letter-spacing: -0.1px;
+    white-space: nowrap;
+}
+
+/* Настройка позиций и анимаций под твои области на экране */
+
+/* Левая верхняя область */
+.item-1 {
+    top: 16%;
+    left: 8%;
+    animation: floatAnimation1 6s infinite ease-in-out;
+    filter: blur(0.5px);
+    opacity: 0.7;
+}
+
+/* Центральная область над заголовком */
+.item-2 {
+    top: 32%;
+    left: 48%;
+    animation: floatAnimation2 8s infinite ease-in-out;
+    opacity: 0.8;
+}
+
+/* Правая нижняя область */
+.item-3 {
+    top: 58%;
+    right: 12%;
+    padding: 12px 22px; /* Чуть крупнее */
+    animation: floatAnimation1 7s infinite ease-in-out 1.5s; /* Задержка */
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+.float-badge {
+    /* Найди этот класс в коде и добавь туда одну строчку, чтобы видеокарта помогала сглаживать движение: */
+    will-change: transform; 
+}
+
+@keyframes floatAnimation1 {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes floatAnimation2 {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(10px) rotate(-2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+
+/* Контейнер для индикатора скролла */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px; /* Отступ от нижнего края экрана */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px; /* Ограничиваем зону движения */
+    z-index: 10;
+}
+
+/* Сама вертикальная линия */
+.scroll-line {
+    width: 2px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.7); /* Слегка прозрачный белый */
+    border-radius: 1px;
+    animation: scrollPulse 2s infinite ease-in-out;
+}
+
+/* Анимация: линия плавно смещается вниз, растворяясь, и возвращается обратно */
+@keyframes scrollPulse {
+    0% {
+        transform: translateY(-8px);
+        opacity: 0;
+        height: 12px;
+    }
+    30% {
+        opacity: 1;
+        height: 24px;
+    }
+    60% {
+        transform: translateY(8px);
+        opacity: 0;
+        height: 12px;
+    }
+    100% {
+        transform: translateY(-8px);
+        opacity: 0;
+        height: 12px;
+    }
+}
+
+
+/* ==========================================================================
+   4. СЕТКА С ВИДЕО (ПОРТФОЛИО)
+   ========================================================================== */
+.works {
+    padding: 120px 40px;
+    background-color: #000000;
+}
+
+.works-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.works .sub-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666666;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.works h2 {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+}
+
+.works-desc {
+    font-size: 15px;
+    color: #888888;
+    margin-bottom: 32px;
+}
+
+/* Линия переключателя вкладок */
+.works-tabs {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 12px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: #666666;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 4px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.tab-btn:hover {
+    color: #ffffff;
+}
+
+/* Белая линия под активной вкладкой */
+.tab-btn.active {
+    color: #ffffff;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -13px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+}
+
+/* Сетки для видео */
+.video-grid {
+    display: grid;
+    gap: 24px;
+}
+
+/* Вертикальная: 3 видео в ряд */
+.grid-vertical {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* Горизонтальная: 2 видео в ряд */
+.grid-horizontal {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Адаптивность для экранов мобильных телефонов */
+@media (max-width: 900px) {
+    .grid-vertical, .grid-horizontal {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+/* Сами карточки и плавный ОТКЛИК (увеличение) при наведении курсора */
+.video-card {
+    background-color: #0a0a0a;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    /* Плавное изменение размера за 0.4 секунды */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+}
+
+.video-card:hover {
+    transform: scale(1.03); /* Увеличиваем карточку ровно на 3% */
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.video-wrapper {
+    position: relative;
+    height: 0;
+    width: 100%;
+    background-color: #111111;
+}
+
+/* Пропорции 9:16 для вертикалок */
+.type-vertical .video-wrapper {
+    padding-bottom: 177.77%;
+}
+
+/* Пропорции 16:9 для горизонталок */
+.type-horizontal .video-wrapper {
+    padding-bottom: 56.25%;
+}
+
+.video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   5. БЛОК КЕЙСОВ (РЕЗУЛЬТАТЫ)
+   ========================================================================== */
+.cases {
+    padding: 100px 40px;
+    background-color: #000000;
+}
+
+.cases-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cases .sub-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666666;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.cases h2 {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+}
+
+.cases-desc {
+    font-size: 15px;
+    color: #888888;
+    margin-bottom: 48px;
+}
+
+/* Сетка кейсов: строго по 2 штуки в ряд */
+.cases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+/* Адаптив под мобильные экраны (карточки встанут в один ряд) */
+@media (max-width: 900px) {
+    .cases-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Оформление карточки */
+.case-card {
+    background-color: #141414; /* Темно-серый благородный фон карточки */
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 20px; /* Закругления как на референсе */
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 240px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.case-card:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+/* Верхняя часть карточки (логотип, имя, просмотры) */
+.case-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.case-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Круглая аккуратная аватарка вместо иконки */
+.case-avatar {
+    width: 44px;              /* Идеальный фиксированный размер */
+    height: 44px;
+    border-radius: 50%;       /* Превращает картинку в идеальный кружок */
+    object-fit: cover;        /* Защищает фото от растягивания и деформации */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкий стильный контур */
+    background-color: #222222;
+}
+
+/* Плашка с просмотрами */
+.views-badge {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+/* Зона с кнопками */
+.case-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+/* Кнопки переходов на ролики */
+.btn-case {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 14px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-case:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+/* Год проекта в самом низу мелким шрифтом */
+.case-footer {
+    font-size: 11px;
+    color: #444444;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: auto;
+}
+
+/* ==========================================================================
+   6. БЛОК КОНТАКТОВ И ПОДВАЛ
+   ========================================================================== */
+.contact {
+    padding: 100px 40px 40px 40px;
+    background-color: #000000;
+    text-align: center;
+    position: relative;
+}
+
+.contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Круглая аватарка со сложной анимацией парения и пульсации свечения */
+.contact-avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 32px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    
+    /* Запускаем одновременно две разные анимации: одна качает и дрожит, вторая — пульсирует неоном */
+    animation: avatarFly 5s infinite ease-in-out, avatarGlow 3s infinite ease-in-out;
+}
+
+/* Анимация 1: Легкое парение, покачивание и микро-дрожание */
+@keyframes avatarFly {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-4px) rotate(-1.5deg); /* Смещение вверх и наклон */
+    }
+    50% {
+        transform: translateY(-8px) rotate(1deg) scale(1.02); /* Пиковая точка парения */
+    }
+    75% {
+        transform: translateY(-3px) rotate(-0.5deg); /* Микро-дрожание при спуске */
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+/* Анимация 2: Пульсация мягкого неонового свечения (эффект дыхания) */
+@keyframes avatarGlow {
+    0% {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 45px rgba(255, 255, 255, 0.4); /* Неон становится ярче и шире */
+        border-color: rgba(255, 255, 255, 0.5);       /* Сам ободок тоже подсвечивается */
+    }
+    100% {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+
+.contact .sub-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666666;
+    margin-bottom: 16px;
+}
+
+.contact h2 {
+    font-size: 64px;       /* Крупный, массивный заголовок */
+    font-weight: 600;
+    margin-bottom: 16px;
+    letter-spacing: -2px;
+    color: #ffffff;
+}
+
+.contact-desc {
+    font-size: 16px;
+    color: #888888;
+    margin-bottom: 40px;
+}
+
+/* Кнопка Telegram с эффектом свечения при наведении */
+.btn-telegram {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 16px 36px;
+    border-radius: 30px;   /* Полностью круглая кнопка, как на фото */
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.btn-telegram i {
+    font-size: 18px;
+}
+
+.btn-telegram:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3); /* Усиливаем свечение */
+}
+
+/* Юзернейм под кнопкой */
+.telegram-username {
+    font-size: 14px;
+    color: #444444;
+    margin-top: 16px;
+    font-weight: 500;
+}
+
+/* Копирайт в самом низу страницы */
+.footer {
+    margin-top: 100px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 24px;
+    width: 100%;
+}
+
+.footer p {
+    font-size: 13px;
+    color: #444444;
+}
+
+/* Адаптив для мобильных экранов (меньше 768px) */
+@media (max-width: 768px) {
+    
+    /* Уменьшаем главный заголовок и чиним межстрочный интервал */
+    h1 {
+        font-size: 50px !important;      /* Делаем шрифт аккуратнее (подбери под себя 40px-44px) */
+        line-height: 1.0 !important;    /* Добавляем воздуху между строками, чтобы буквы не слипались */
+        letter-spacing: -1px;            /* Чуть сближаем буквы для стиля */
+        margin-bottom: 18px;             /* Расстояние до подзаголовка */
+    }
+    
+    /* Если у тебя для заголовка используется другой класс, например .hero-title, замени h1 на него: */
+    /* .hero-title { font-size: 42px !important; line-height: 1.15 !important; } */
+}
+
+.connect-btn {
+    display: inline-flex;          /* Включаем гибкий контейнер */
+    align-items: center;           /* Центруем текст по вертикали */
+    justify-content: center;       /* Центруем текст по горизонтали */
+    
+    background-color: #ffffff !important; /* Намертво красим фон в белый */
+    color: #000000 !important;           /* Намертво красим текст в черный */
+    
+    padding: 12px 28px !important;       /* Внутренние отступы (высота и ширина) */
+    border-radius: 50px !important;      /* Идеально круглые бока */
+    
+    font-size: 16px;                     /* Размер шрифта */
+    font-weight: 600;                    /* Жирность текста */
+    text-decoration: none !important;    /* Убираем синее подчеркивание ссылки */
+    
+    border: none !important;             /* Убираем любые серые рамки */
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Эффект при наведении — кнопка будет слегка сжиматься */
+.connect-btn:hover {
+    opacity: 0.95;
+    transform: scale(0.98);
+}
+
+/* ==========================================================================
+   7. ПОЛНЫЙ АДАПТИВ ДЛЯ МОБИЛЬНЫХ ЭКРАНОВ (МЕНЬШЕ 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+    /* Главный заголовок */
+    .hero-content h1 {
+        font-size: 50px !important;      
+        line-height: 1.0 !important;    
+        letter-spacing: -1px;            
+        margin-bottom: 18px;             
+    }
+    
+    /* Включаем родительский контейнер и уменьшаем ВСЁ содержимое разом без потери FPS */
+    .floating-elements {
+        display: block !important; 
+        transform: scale(0.8) !important;
+        transform-origin: center center;
+    }
+
+    /* Сбрасываем лишний scale с самих плашек, чтобы не ломать анимацию */
+    .float-badge {
+        transform: none;
+    }
+
+    /* Координаты плашек для мобилки (индивидуально ускоряем item-2) */
+    .item-1 {
+        top: 14% !important;   
+        left: 4% !important;   
+    }
+
+    .item-2 {
+        top: 25% !important;   
+        left: 55% !important;  
+        animation: floatAnimation2 4.5s infinite ease-in-out !important; /* Сделали побыстрее, чтобы движение считывалось */
+    }
+
+    .item-3 {
+        top: 55% !important;   
+        right: 4% !important;  
+    }
+}
